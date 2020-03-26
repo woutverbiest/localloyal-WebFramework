@@ -10,15 +10,17 @@ use Validator;
 
 class UserController extends Controller
 {
-    public function login(){
-        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
-            $user = Auth::user();
-            $success['token'] = $user->createToken('localloyal')->accessToken;
-            return response() ->json(['success' => $success], 200);
-        }
-        else{
-            return response() ->json(['error'=>'Unauthorised'], 401);
-        }                 
+    public $successStatus = 200;
+
+    public function login(){ 
+        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
+            $user = Auth::user(); 
+            $success['token'] =  $user->createToken('localloyal')-> accessToken; 
+            return response()->json(['success' => $success], $this-> successStatus); 
+        } 
+        else{ 
+            return response()->json(['error'=>'Unauthorised'], 401); 
+        } 
     }
 
     public function register(Request $request){
@@ -38,9 +40,17 @@ class UserController extends Controller
         $input['password'] = bcrypt($input['password']);
 
         $user = User::create($input);
-
+        
+        $success['token'] = $user->createToken('localloyal');
         $success['name'] = $user->name;
 
         return response() -> json(['success' => $success], 200);
     }
+
+    public function details() 
+    { 
+        $user = Auth::user(); 
+        return response()->json(['success' => $user], $this-> successStatus); 
+    } 
 }
+
