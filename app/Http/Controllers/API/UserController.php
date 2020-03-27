@@ -12,7 +12,8 @@ class UserController extends Controller
 {
     public $successStatus = 200;
 
-    public function login(){ 
+    public function login()
+    { 
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
             $user = Auth::user(); 
             $success['token'] =  $user->createToken('localloyal')-> accessToken; 
@@ -23,7 +24,8 @@ class UserController extends Controller
         } 
     }
 
-    public function register(Request $request){
+    public function register(Request $request)
+    {
         $validator = Validator::make($request->all(),[
             'name'=>'required',
             'email' => 'required|email',
@@ -51,6 +53,16 @@ class UserController extends Controller
     { 
         $user = Auth::user(); 
         return response()->json(['success' => $user], $this-> successStatus); 
-    } 
+    }
+
+    public function find()
+    {
+        //todo
+    }
+
+    public function update()
+    {
+        //todo
+    }
 }
 
