@@ -36,17 +36,18 @@ class UserController extends Controller
         if($validator->fails()){
             return response()->json(['error'=>$validator->errors()], 401);
         }
-
-        $input = $request->all();
+        else{
+            $input = $request->all();
         
-        $input['password'] = bcrypt($input['password']);
+            $input['password']  = bcrypt($input['password']);
 
-        $user = User::create($input);
+            $user = User::create($input);
         
-        $success['token'] = $user->createToken('localloyal');
-        $success['name'] = $user->name;
+            $success['token'] =  $user->createToken('localloyal')-> accessToken; 
+            $success['name'] = $user->name;
 
-        return response() -> json(['success' => $success], 200);
+            return response() -> json(['success' => $success], 200);
+        }
     }
 
     public function details() 
@@ -57,12 +58,12 @@ class UserController extends Controller
 
     public function find()
     {
-        //todo
+        //TODO
     }
 
     public function update()
     {
-        //todo
+        //TODO
     }
 }
 
