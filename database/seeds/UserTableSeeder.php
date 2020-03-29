@@ -30,8 +30,6 @@ class UserTableSeeder extends Seeder
             ]
         ];
 
-        //TODO PASSWORDS ARE CLEAR IN DATABASE
-
         foreach($users as $user){
             User::create($user);
         }
