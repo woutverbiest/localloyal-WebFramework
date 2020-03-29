@@ -4,13 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Day extends Model
+class ShopType extends Model
 {
     protected $fillable = [
-        'day'
+        'type'
     ];
     protected $hidden = [
         'id'
     ];
+    protected $table = 'shoptypes';
     public $timestamps = false;
 }
