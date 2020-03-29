@@ -9,21 +9,21 @@ class RewardController extends Controller
 {
     public function index()
     {
-        //todo
+        //TODO
     }
 
     public function create()
     {
-        //todo
+        //TODO
     }
 
     public function update()
     {
-        //todo
+        //TODO
     }
 
     public function delete()
     {
-        //todo
+        //TODO
     }
 }

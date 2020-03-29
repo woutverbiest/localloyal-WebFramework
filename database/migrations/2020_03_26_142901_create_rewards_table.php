@@ -17,7 +17,7 @@ class CreateRewardsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('shop_id')->nullable(false);
             $table->foreign('shop_id')->references('id')->on('shops');
-            $table->string('rewardName')->nullable(false);
+            $table->string('reward_name')->nullable(false);
             $table->integer('points')->nullable(false);
             $table->mediumText('description')->nullable(false);
             $table->timestamps();
