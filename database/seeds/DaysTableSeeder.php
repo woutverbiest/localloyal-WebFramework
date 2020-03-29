@@ -12,6 +12,18 @@ class DaysTableSeeder extends Seeder
      */
     public function run()
     {
-        
+       $days = [
+            ['day'=>'Monday'],
+            ['day'=>'Tuesday'],
+            ['day'=>'Wednesday'],
+            ['day'=>'Thursday'],
+            ['day'=>'Friday'],
+            ['day'=>'Saturday'],
+            ['day'=>'Sunday']
+        ];
+
+        foreach($days as $day){
+            Day::create($day);
+        }
     }
 }
