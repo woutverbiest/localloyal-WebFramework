@@ -13,7 +13,7 @@ class ShopController extends Controller
 {
     public function create(Request $request)
     {
-        $user = Auth::user();
+        $user = Auth::user(); //TODO ADD ERROR FOR IF AUTH FAILS
         $shop = Shop::where('user_id',$user->id)->first();
 
         if($shop == null){
@@ -38,7 +38,7 @@ class ShopController extends Controller
 
                 $shop = Shop::create($input);
 
-                return response()->json(['success'=>$input],201);
+                return response()->json(['success'=>$shop],201);
             }
         }
         else{
