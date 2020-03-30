@@ -50,7 +50,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/shop{shopuuid}/openinghours','API\OpeninghoursController@update');
 
     //update brakes of my shop
-    Route::post('/shop/{shopuuid}/brakes','API\BrakesController@update');
+    Route::post('/shop/{shopuuid}/brakes','API\BrakesController@update');//TODO change this to another controller
 });
 
 
@@ -64,7 +64,7 @@ Route::get('/rewards/{shopuuid}','API\RewardController@index');
 Route::get('/shop/{shopuuid}/openinghours','API\OpeninghoursController@index');
 
 //get brakes of shop
-Route::get('/shop/{shopuuid}/brakes','API\BrakesController@index');
+Route::get('/shop/{shopuuid}/brakes','API\BrakesController@index');//TODO change this to another controller
 
 //get day by id
 Route::get('/day/{id}','API\DayController@find');
