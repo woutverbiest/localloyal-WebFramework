@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/user/details', 'API\UserController@details');
 
     //update information about my account
-    Route::post('/user/update','API\UserController@update');
+    Route::post('/user/update','API\UserController@update');//TODO
 
     //create shop
     Route::post('/shop/create','API\ShopController@create');
@@ -35,37 +35,31 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/shop/update','API\ShopController@update');
 
     //create Reward
-    Route::post('/rewards/{shopuuid}/create','API\RewardController@create');
+    Route::post('/rewards/{shopuuid}/create','API\RewardController@create');//TODO
 
     //update Reward
-    Route::post('/rewards/{shopuuid}/{rewarduuid}','API\RewardController@update');
+    Route::post('/rewards/{shopuuid}/{rewarduuid}','API\RewardController@update');//TODO
 
     //delete Reward
-    Route::post('/rewards/{shopuuid}/{rewarduuid}/delete','API\RewardController@delete');
+    Route::post('/rewards/{shopuuid}/{rewarduuid}/delete','API\RewardController@delete');//TODO
 
     //get transactions of my shop
-    Route::post('/transactions','API\TransactionController@index');
+    Route::post('/transactions','API\TransactionController@index');//TODO
 
     //update openinghours of my shop
-    Route::post('/shop{shopuuid}/openinghours','API\OpeninghoursController@update');
-
-    //update brakes of my shop
-    Route::post('/shop/{shopuuid}/brakes','API\BrakesController@update');//TODO change this to another controller
+    Route::post('/shop/{shopuuid}/openinghours','API\OpeninghoursController@update');//TODO
 });
 
 
 //get a client
-Route::get('/user/{uuid}','API\UserController@find');
+Route::get('/user/{uuid}','API\UserController@find');//TODO
 
 //get rewards of shop
-Route::get('/rewards/{shopuuid}','API\RewardController@index');
+Route::get('/rewards/{shopuuid}','API\RewardController@index');//TODO
 
 //get openinghours of shop
-Route::get('/shop/{shopuuid}/openinghours','API\OpeninghoursController@index');
-
-//get brakes of shop
-Route::get('/shop/{shopuuid}/brakes','API\BrakesController@index');//TODO change this to another controller
+Route::get('/shop/{shopuuid}/openinghours','API\OpeninghoursController@index');//TODO
 
 //get day by id
-Route::get('/day/{id}','API\DayController@find');
+Route::get('/day/{id}','API\DayController@find');//TODO
 
