@@ -17,13 +17,13 @@ class UserShopTableSeeder extends Seeder
                 'user_id'=>2,
                 'shop_id'=>1,
                 'points'=>34,
-                'favorite'=>true
+                'favorite'=>false
             ],
             [
                 'user_id'=>3,
                 'shop_id'=>1,
-                'points'=>97,
-                'favorite'=>false 
+                'points'=>62,
+                'favorite'=>true
             ]
         ];
 
