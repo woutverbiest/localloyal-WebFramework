@@ -9,6 +9,6 @@ class DayController extends Controller
 {
     public function find()
     {
-        //todo
+        //TODO
     }
 }
