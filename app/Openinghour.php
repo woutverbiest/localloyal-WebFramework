@@ -10,6 +10,6 @@ class Openinghour extends Model
         'shop_id','day_id','from','till','brake_start','brake_end', 'closed'
     ];
     protected $hidden =[
-        'created_at','updated_at'
+        'created_at','updated_at', 'day_id','shop_id'
     ];
 }

@@ -58,6 +58,6 @@ Route::get('/user/{uuid}','API\UserController@find');
 Route::get('/rewards/{shopuuid}','API\RewardController@index');
 
 //get openinghours of shop
-Route::get('/shop/{shopuuid}/openinghours','API\OpeninghoursController@index');//TODO
+Route::get('/shop/{shopuuid}/openinghours','API\OpeninghoursController@index');
 
 
