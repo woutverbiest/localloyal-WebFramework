@@ -8,11 +8,11 @@ use App\Http\Controllers\Controller;
 class OpeninghoursController extends Controller
 {
     public function index(){
-        //todo
+        //TODO
     }
 
     public function update()
     {
-        //todo
+        //TODO
     }
 }

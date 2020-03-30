@@ -15,7 +15,7 @@ class AddBrakesToOpeninghoursTable extends Migration
     {
         Schema::table('openinghours', function ($table) {
             $table->time('brake_start')->after('till');
-            $table->time('brake_end')->after('till');
+            $table->time('brake_end')->after('brake_start');
         });
     }
 

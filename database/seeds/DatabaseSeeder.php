@@ -15,8 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DaysTableSeeder::class);
         $this->call(ShopTypeTableSeeder::class);
         $this->call(ShopTableSeeder::class);
-        //$this->call(OpeninghoursTableSeeder::class);
-        //$this->call(BrakesTableSeeder::class);
+        $this->call(OpeninghoursTableSeeder::class);
         $this->call(RewardsTableSeeder::class);
         //$this->call(TransactionTableSeeder::class);
         $this->call(UserShopTableSeeder::class);
