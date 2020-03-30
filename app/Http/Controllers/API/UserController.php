@@ -56,9 +56,16 @@ class UserController extends Controller
         return response()->json(['success' => $user], $this-> successStatus); 
     }
 
-    public function find()
+    public function find($uuid)
     {
-        //TODO
+        $user = User::find($uuid);
+        
+        if($user == null){
+            return response() -> json(['error' => 'Not Found: User does not exist'], 404);
+        }
+        else{
+            return response() -> json(['success' =>  ['name'=>$user->name]],200);
+        }
     }
 
     public function update()

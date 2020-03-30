@@ -52,14 +52,12 @@ Route::group(['middleware' => 'auth:api'], function(){
 
 
 //get a client
-Route::get('/user/{uuid}','API\UserController@find');//TODO
+Route::get('/user/{uuid}','API\UserController@find');
 
 //get rewards of shop
-Route::get('/rewards/{shopuuid}','API\RewardController@index');//TODO
+Route::get('/rewards/{shopuuid}','API\RewardController@index');
 
 //get openinghours of shop
 Route::get('/shop/{shopuuid}/openinghours','API\OpeninghoursController@index');//TODO
 
-//get day by id
-Route::get('/day/{id}','API\DayController@find');//TODO
 
