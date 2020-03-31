@@ -68,9 +68,27 @@ class UserController extends Controller
         }
     }
 
-    public function update()
+    public function update(Request $request)
     {
-        //TODO
+        $user = Auth::user();
+
+        $validator = Validator::make($request->all(),[
+            'name'=>'required',
+            'email'=>'required'
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['error'=>$validator->errors()], 200);
+        }
+        else{
+            User::where('id', $user->id)
+                    ->update([
+                        'name'=>$input['name'],
+                        'email'=>$input['email']
+                    ]);
+
+            return response()->json(['success', $input], 200);//TODO CHANGE THIS RESPONSE
+        }
     }
 }
 

@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/user/details', 'API\UserController@details');
 
     //update information about my account
-    Route::post('/user/update','API\UserController@update');//TODO
+    Route::post('/user/update','API\UserController@update');
 
     //create shop
     Route::post('/shop/create','API\ShopController@create');
@@ -50,6 +50,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/shop/{shopuuid}/openinghours','API\OpeninghoursController@update');
 
     //TODO CREATE ROUTES FOR STATISTICS
+    //TODO CREATE ROUTE FOR UPDATE PASSWORD
 });
 
 
@@ -61,5 +62,8 @@ Route::get('/rewards/{shopuuid}','API\RewardController@index');
 
 //get openinghours of shop
 Route::get('/shop/{shopuuid}/openinghours','API\OpeninghoursController@index');
+
+
+//TODO FIND SOMETHING for routes that are not found
 
 
