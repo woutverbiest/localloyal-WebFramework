@@ -25,7 +25,6 @@ class OpeninghoursController extends Controller
             }
             return response() -> json(['success' => $openinghours], 200);
         }
-        
     }
 
     public function update()

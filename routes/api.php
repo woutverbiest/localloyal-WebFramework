@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/shop/update','API\ShopController@update');
 
     //create Reward
-    Route::post('/rewards/{shopuuid}/create','API\RewardController@create');//TODO
+    Route::post('/rewards/{shopuuid}/create','API\RewardController@create');
 
     //update Reward
     Route::post('/rewards/{shopuuid}/{rewarduuid}','API\RewardController@update');//TODO
@@ -44,10 +44,12 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/rewards/{shopuuid}/{rewarduuid}/delete','API\RewardController@delete');//TODO
 
     //get transactions of my shop
-    Route::post('/transactions','API\TransactionController@index');//TODO
+    Route::post('/transactions','API\TransactionController@index');
 
     //update openinghours of my shop
     Route::post('/shop/{shopuuid}/openinghours','API\OpeninghoursController@update');//TODO
+
+    //TODO CREATE ROUTES FOR STATISTICS
 });
 
 

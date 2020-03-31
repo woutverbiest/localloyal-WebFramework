@@ -14,6 +14,7 @@ class RewardController extends Controller
 {
     public function index($shopuuid)
     {
+        //FIXME ORDER REWARDS FROM LOW POINTS TO HIGH POINTS
         $shop = Shop::find($shopuuid);
         if($shop==null){
             return response() -> json(['error' => 'Not Found: Shop does not exist'],404);

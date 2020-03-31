@@ -62,6 +62,7 @@ class ShopController extends Controller
     {
         $user = Auth::user();
         $shop = Shop::where('user_id',$user->id)->first();
+        //TODO CHECK IF AUTH FAILS
         if($shop == null){
             return response() -> json(['error','Not found: User does not have a store'],404);
         }
