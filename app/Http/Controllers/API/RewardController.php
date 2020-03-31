@@ -61,6 +61,8 @@ class RewardController extends Controller
 
     public function update($shopuuid, $rewarduuid, Request $request)
     {
+        //TODO CHECK IF USER EXISTS
+
         $user = Auth::user();
         $shop = Shop::where('user_id', $user->id)->first();
         $reward = Reward::find($rewarduuid);
@@ -104,8 +106,30 @@ class RewardController extends Controller
         }
     }
 
-    public function delete()
+    public function delete($shopuuid, $rewarduuid)
     {
-        //TODO
+        $user = Auth::user();
+        $shop = Shop::where('user_id', $user->id)->first();
+        $reward = Reward::find($rewarduuid);
+
+        //TODO CHECK IF USER EXISTS
+
+        if($shop == null){
+            return response()->json(['error'=>'Not Found: Shop does not exist'], 404);
+        }
+        elseif($reward == null){
+            return response()->json(['error'=>'Not Found: Reward does not exist'], 404);
+        }
+        elseif($shop->id != $shopuuid){
+            return response()->json(['error'=>'Forbidden: You can not delete this reward'], 403);
+        }
+        elseif($reward->shop_id == $shopuuid){
+            return response()->json(['error'=>'Forbidden: You can not delete this reward'], 403);
+        }
+        else{
+            Reward::find($rewarduuid)->delete();
+
+            return response()->json(['success','deleted'], 200);
+        }
     }
 }
