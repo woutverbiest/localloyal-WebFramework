@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/transactions','API\TransactionController@index');
 
     //update openinghours of my shop
-    Route::post('/shop/{shopuuid}/openinghours','API\OpeninghoursController@update');//TODO
+    Route::post('/shop/{shopuuid}/openinghours','API\OpeninghoursController@update');
 
     //TODO CREATE ROUTES FOR STATISTICS
 });

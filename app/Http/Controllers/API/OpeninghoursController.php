@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Shop;
 use App\Openinghour;
 use App\Day;
+use Illuminate\support\Facades\Auth;
+use Validator;
 
 class OpeninghoursController extends Controller
 {
@@ -27,8 +29,42 @@ class OpeninghoursController extends Controller
         }
     }
 
-    public function update()
-    {
-        //TODO
+    public function update($shopuuid, Request $request){
+        //TODO ADD VALIDATION IF USER EXISTS
+        
+        $user = Auth::user();
+        $shop = Shop::where('user_id', $user->id)->first();
+
+        if($shop == null){
+            return response()->json(['error'=>'Not Found: Shop does not exist'], 404);
+        }
+        else{
+            $validator = Validator::make($request->all(),[
+                'day_id'=>'required',
+                'from'=>'required',
+                'till'=>'required',
+                'brake_start'=>'required',
+                'brake_end'=>'required',
+                'closed'=>'required'
+            ]);
+
+            if($validator->fails()){
+                return response()->json(['error'=>$validator->errors()], 401);
+            }
+            else{
+                $input = $request->all();
+
+                Openinghour::where('shop_id', $shop->id)
+                            ->where('day_id', $input['day_id'])
+                            ->update([
+                                'from'=>$input['from'],
+                                'till'=>$input['till'],
+                                'brake_start'=>$input['brake_start'],
+                                'brake_end'=>$input['brake_end'],
+                                'closed'=>$input['closed']
+                            ]);
+                return response()->json(['succes'=>$input], 200);
+            }
+        }
     }
 }
