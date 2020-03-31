@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/rewards/{shopuuid}/create','API\RewardController@create');
 
     //update Reward
-    Route::post('/rewards/{shopuuid}/{rewarduuid}','API\RewardController@update');//TODO
+    Route::post('/rewards/{shopuuid}/{rewarduuid}','API\RewardController@update');
 
     //delete Reward
     Route::post('/rewards/{shopuuid}/{rewarduuid}/delete','API\RewardController@delete');//TODO

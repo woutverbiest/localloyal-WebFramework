@@ -31,6 +31,7 @@ class OpeninghoursController extends Controller
 
     public function update($shopuuid, Request $request){
         //TODO ADD VALIDATION IF USER EXISTS
+        //TODO DO SOMETHING WITH THE SHOP UUID FROM URL
         
         $user = Auth::user();
         $shop = Shop::where('user_id', $user->id)->first();
@@ -52,6 +53,7 @@ class OpeninghoursController extends Controller
                 return response()->json(['error'=>$validator->errors()], 401);
             }
             else{
+                //TODO  MAKE IT POSSIBLE TO UPDATE ALL DAYS AT ONCE
                 $input = $request->all();
 
                 Openinghour::where('shop_id', $shop->id)
@@ -63,7 +65,7 @@ class OpeninghoursController extends Controller
                                 'brake_end'=>$input['brake_end'],
                                 'closed'=>$input['closed']
                             ]);
-                return response()->json(['succes'=>$input], 200);
+                return response()->json(['success'=>$input], 200);//TODO CHANGE THIS RESPONSE
             }
         }
     }

@@ -59,9 +59,49 @@ class RewardController extends Controller
         }
     }
 
-    public function update()
+    public function update($shopuuid, $rewarduuid, Request $request)
     {
-        //TODO
+        $user = Auth::user();
+        $shop = Shop::where('user_id', $user->id)->first();
+        $reward = Reward::find($rewarduuid);
+
+        //TODO check if reward exists, better: change update or create
+
+        if($shop == null){
+            return response()->json(['error'=>'Not Found: Shop does not exist'], 404);
+        }
+        elseif($reward == null){
+            return response()->json(['error'=>'Not Found: Reward does not exist'], 404);
+        }
+        elseif($shop->id != $shopuuid){
+            return response()->json(['error'=>'Forbidden: You can not update this reward'],403);
+        }
+        elseif($reward->shop_id == $shopuuid){
+            return response()->json(['error'=>'Forbidden: You can not update this reward'],403);
+        }
+        else{
+            $validator = Validator::make($request->all(),[
+                'reward_name'=>'required',
+                'points'=>'required',
+                'description'=>'required'
+            ]);
+
+            if($validator->fails()){
+                return response()->json(['error'=>$validator->errors()], 401);
+            }
+            else{
+                $input = $request->all();
+
+                Reward::where('id', $rewarduuid)
+                            ->update([
+                                'reward_name'=>'required',
+                                'points'=>'required',
+                                'description'=>'required'
+                            ]);
+
+                return response()->json(['success'=>$input], 200);//TODO CHANGE THIS RESPONSE
+            }
+        }
     }
 
     public function delete()
