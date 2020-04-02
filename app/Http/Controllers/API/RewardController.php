@@ -28,10 +28,10 @@ class RewardController extends Controller
     public function find($rewarduuid)
     {
         $reward = Reward::find($rewarduuid);
-        if ($reward != null){
-            return response()->json(['success' => $reward],200);
+        if ($reward != null) {
+            return response()->json(['success' => $reward], 200);
         } else {
-            return response()->json(['error'=>'Not Found: Reward does not exist']);
+            return response()->json(['error' => 'Not Found: Reward does not exist']);
         }
     }
 

@@ -39,16 +39,16 @@ class ShopController extends Controller
                 return response()->json(['success' => $shop], 201);
             }
         } else {
-            return response()->json(['error'=> 'Method not allowed: User already has shop'], 405);
+            return response()->json(['error' => 'Method not allowed: User already has shop'], 405);
         }
     }
 
     public function index()
     {
         $shops = Shop::all();
-        
-        foreach($shops as $shop){
-           $shop->shoptype = self::getshoptype($shop->shoptype);
+
+        foreach ($shops as $shop) {
+            $shop->shoptype = self::getshoptype($shop->shoptype);
         }
         return response()->json(['success' => $shops], 200);
     }
@@ -59,31 +59,33 @@ class ShopController extends Controller
         return $shop;
     }
 
-    private function getshoptype($id){
+    private function getshoptype($id)
+    {
         $shoptype = ShopType::find($id);
         return $shoptype;
     }
 
     public function myshop()
-    {   
+    {
         $shop = self::getshopbyid(Shop::where('user_id', Auth::user()->id)->first()->id);
-        
+
         if ($shop != null) {
             $shop->shoptype = self::getshoptype($shop->shoptype);
             return response()->json(['success' => $shop], 200);
         } else {
-            return response()->json(['error'=> 'Not found: Shop does not exist'], 404);
+            return response()->json(['error' => 'Not found: Shop does not exist'], 404);
         }
     }
 
-    public function find($uuid){
+    public function find($uuid)
+    {
         $shop = self::getshopbyid($uuid);
 
         if ($shop != null) {
             $shop->shoptype = self::getshoptype($shop->shoptype);
             return response()->json(['success' => $shop], 200);
         } else {
-            return response()->json(['error'=> 'Not found: Shop does not exist'], 404);
+            return response()->json(['error' => 'Not found: Shop does not exist'], 404);
         }
     }
 

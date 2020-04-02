@@ -29,7 +29,8 @@ class TransactionController extends Controller
         }
     }
 
-    public function statistics(){
+    public function statistics()
+    {
         $shop = Shop::where('user_id', Auth::user()->id)->first();
 
         //TODO LIJST MET ALLE KLANTEN
