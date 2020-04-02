@@ -13,22 +13,40 @@ class TransactionController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        $shop = Shop::where('user_id', $user->id)->first();
-        
-        //TODO add validation if user exists
-        if($shop == null){
+        $shop = Shop::where('user_id', Auth::user()->id)->first();
+
+        if ($shop == null) {
             return response()->json(['error' => 'Not Found: Shop does not exist'], 404);
-        }
-        else{
+        } else {
             $transactions = Transaction::where('shop_id', $shop->id)->get();
-            
-            foreach($transactions as $transaction){
-                $username['name'] = User::find($transaction->user_id)->name;
-                $transaction['user'] = $username;
+
+            foreach ($transactions as $transaction) {
+                $user['name'] = User::find($transaction->user_id)->name;
+                $transaction['user'] = $user;
             }
 
             return response()->json(['success' => $transactions], 200);
         }
+    }
+
+    public function statistics(){
+        $shop = Shop::where('user_id', Auth::user()->id)->first();
+
+        //TODO LIJST MET ALLE KLANTEN
+
+
+        //HOEVEEL ZE UITGAVEN DEZE MAAND
+
+
+        //HOEVEEL ZE UITGAVEN VORIGE MAAND
+
+
+        //HOEVEEL ZE UITGAVEN DIT JAAR
+
+
+        //HOEVEEL ZE UITGAVEN VORIG JAAR
+
+
+        //HOEVAAK ZE GEMIDDELD MAAND WEER JE WINKEL BEZOEKEN
     }
 }

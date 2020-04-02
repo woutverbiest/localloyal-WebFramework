@@ -13,57 +13,36 @@ use Illuminate\Http\Request;
 |
 */
 
-
 Route::post('/login','API\UserController@login');
 Route::post('/register', 'API\UserController@register');
 
 Route::group(['middleware' => 'auth:api'], function(){
+    Route::get('/user', 'API\UserController@details');//get my account
+    Route::post('/user','API\UserController@update');//update my account
+    Route::post('/user/password','API\UserController@updatepassword');//update password
 
-    //get information about my account
-    Route::post('/user/details', 'API\UserController@details');
+    Route::get('/shop','API\ShopController@myshop');//get my shop
+    Route::post('/shop','API\ShopController@update');//update shop
+    Route::post('/shop/create','API\ShopController@create');//create shop
 
-    //update information about my account
-    Route::post('/user/update','API\UserController@update');
+    Route::post('/reward','API\RewardController@create');//create Reward
+    Route::post('/reward/{rewarduuid}','API\RewardController@update');//update Reward
+    Route::delete('/reward/{rewarduuid}','API\RewardController@delete');//delete Reward
 
-    //create shop
-    Route::post('/shop/create','API\ShopController@create');
+    Route::get('/transactions','API\TransactionController@index');//get transactions of my shop
 
-    //get shop
-    Route::post('/shop','API\ShopController@index');
+    Route::get('/statistics','API\TransactionController@statistics');//get statistics of my shop
 
-    //update shop
-    Route::post('/shop/update','API\ShopController@update');
-
-    //create Reward
-    Route::post('/rewards/{shopuuid}/create','API\RewardController@create');
-
-    //update Reward
-    Route::post('/rewards/{shopuuid}/{rewarduuid}','API\RewardController@update');
-
-    //delete Reward
-    Route::post('/rewards/{shopuuid}/{rewarduuid}/delete','API\RewardController@delete');//TODO change to delete route
-
-    //get transactions of my shop
-    Route::post('/transactions','API\TransactionController@index');
-
-    //update openinghours of my shop
-    Route::post('/shop/{shopuuid}/openinghours','API\OpeninghoursController@update');
-
-    //TODO CREATE ROUTES FOR STATISTICS
-    //TODO CREATE ROUTE FOR UPDATE PASSWORD
+    Route::post('/openinghours','API\OpeninghoursController@update');//update openinghours of my shop
 });
 
+Route::get('/user/{uuid}','API\UserController@find');//get a user
 
-//get a client
-Route::get('/user/{uuid}','API\UserController@find');
+Route::get('/shop/all','API\ShopController@index');//get all shoptypes
+Route::get('/shop/{shopuuid}','API\ShopController@find');//get a shop by id
+Route::get('/shop/{shopuuid}/rewards','API\RewardController@index');//get rewards of shop
+Route::get('/shop/{shopuuid}/openinghours','API\OpeninghoursController@index');//get openinghours of shop
 
-//get rewards of shop
-Route::get('/rewards/{shopuuid}','API\RewardController@index');
-
-//get openinghours of shop
-Route::get('/shop/{shopuuid}/openinghours','API\OpeninghoursController@index');
-
+Route::get('/reward/{rewarduuid}','API\RewardController@find');//get a reward by id
 
 //TODO FIND SOMETHING for routes that are not found
-
-

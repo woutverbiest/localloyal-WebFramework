@@ -29,9 +29,7 @@ class OpeninghoursController extends Controller
         }
     }
 
-    public function update($shopuuid, Request $request){
-        //TODO ADD VALIDATION IF USER EXISTS
-        //TODO DO SOMETHING WITH THE SHOP UUID FROM URL
+    public function update(Request $request){
         
         $user = Auth::user();
         $shop = Shop::where('user_id', $user->id)->first();
