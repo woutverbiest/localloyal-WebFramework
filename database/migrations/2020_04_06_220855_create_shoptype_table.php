@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateShoptypeTable extends Migration
 {
@@ -26,6 +26,6 @@ class CreateShoptypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shoptypes');
+        Schema::dropIfExists('shoptype');
     }
 }

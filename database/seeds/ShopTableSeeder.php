@@ -12,16 +12,14 @@ class ShopTableSeeder extends Seeder
      */
     public function run()
     {
-        {
-            $shop = [
-                'shopname' => 'Slice Of Life',
-                'shoptype' => 17,
-                'description' => 'A cozy restaurant serving fresh italian pizza.',
-                'visible' => true,
-                'user_id' => 1,
-            ];
-    
-            Shop::create($shop);
-        }
+        $shop = [
+            'shopname' => 'Slice Of Life',
+            'shoptype' => 17,
+            'description' => 'A cozy restaurant serving fresh italian pizza.',
+            'visible' => true,
+            'user_id' => 1,
+        ];
+
+        Shop::create($shop);
     }
 }
