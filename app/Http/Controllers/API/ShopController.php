@@ -13,7 +13,8 @@ class ShopController extends Controller
 {
     public function create(Request $request)
     {
-        $shop = self::getshopbyid(Shop::where('user_id', Auth::user()->id)->first()->id);
+        $user = Auth::user();
+        $shop = Shop::where('user_id', $user->id)->first();
 
         if ($shop == null) {
 
@@ -67,7 +68,8 @@ class ShopController extends Controller
 
     public function myshop()
     {
-        $shop = self::getshopbyid(Shop::where('user_id', Auth::user()->id)->first()->id);
+        $user = Auth::user();
+        $shop = Shop::where('user_id', $user->id)->first();
 
         if ($shop != null) {
             $shop->shoptype = self::getshoptype($shop->shoptype);
@@ -122,5 +124,10 @@ class ShopController extends Controller
                 return response()->json(['success' => $updatedshop], 200);
             }
         }
+    }
+
+    public function types(){
+        $shoptypes = ShopType::all();
+        return response()->json(['success' => $shoptypes], 200);
     }
 }
