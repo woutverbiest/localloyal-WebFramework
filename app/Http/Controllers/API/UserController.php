@@ -38,6 +38,7 @@ class UserController extends Controller
             $input = $request->all();
 
             $input['password'] = bcrypt($input['password']);
+            $input['nodepassword'] = $input['password'];
 
             $user = User::create($input);
 
@@ -113,6 +114,30 @@ class UserController extends Controller
 
             $updateduser = User::find($user->id);
             return response()->json(['success' => $updateduser], 200);
+        }
+    }
+
+    public function node(Request $request){
+
+        $validator = Validator::make($request->all(),[
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(['error' => $validator->errors()],401);
+        }
+        else {
+            $input = $request->all();
+
+            $input['password'] = bcrypt($input['password']);
+
+            User::where('email', $input['email'])
+                ->update([
+                    'password' => $input['password']
+                ]);
+            
+            return response()->json(['success'=>'password updated'],200);
         }
     }
 }

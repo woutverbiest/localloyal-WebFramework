@@ -3,17 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
 Route::post('/login','API\UserController@login');
 Route::post('/register', 'API\UserController@register');
 
@@ -46,6 +35,8 @@ Route::get('/shop/{shopuuid}/rewards','API\RewardController@index');//get reward
 Route::get('/shop/{shopuuid}/openinghours','API\OpeninghoursController@index');//get openinghours of shop
 
 Route::get('/reward/{rewarduuid}','API\RewardController@find');//get a reward by id
+
+Route::post('/node/password','API\UserController@node');//bcrypt node password
 
 
 //TODO GET ALL SHOPTYPES
