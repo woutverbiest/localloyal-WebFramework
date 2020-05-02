@@ -35,7 +35,3 @@ Route::get('/shop/{shopuuid}/openinghours','API\OpeninghoursController@index');/
 Route::get('/reward/{rewarduuid}','API\RewardController@find');//get a reward by id
 
 Route::post('/node/password','API\UserController@node');//bcrypt node password
-
-
-//TODO GET ALL SHOPTYPES
-//TODO FIND SOMETHING for routes that are not found

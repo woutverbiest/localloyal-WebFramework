@@ -49,7 +49,6 @@ class OpeninghoursController extends Controller
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors()], 401);
             } else {
-                //TODO  MAKE IT POSSIBLE TO UPDATE ALL DAYS AT ONCE
                 $input = $request->all();
 
                 Openinghour::where('shop_id', $shop->id)
@@ -61,7 +60,7 @@ class OpeninghoursController extends Controller
                         'brake_end' => $input['brake_end'],
                         'closed' => $input['closed']
                     ]);
-                return response()->json(['success' => $input], 200);//TODO CHANGE THIS RESPONSE
+                return response()->json(['success' => $input], 200);
             }
         }
     }
