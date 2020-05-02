@@ -8,6 +8,7 @@ use App\Shop;
 use Illuminate\support\facades\auth;
 use Validator;
 use App\ShopType;
+use App\Openinghour;
 
 class ShopController extends Controller
 {
@@ -41,10 +42,26 @@ class ShopController extends Controller
 
                 $shop = Shop::create($input);
 
+                self::generateOpeningHours($shop->id);
+
                 return response()->json(['success' => $shop], 201);
             }
         } else {
             return response()->json(['error' => 'Method not allowed: User already has shop'], 405);
+        }
+    }
+
+    private function generateOpeningHours($shop_id){
+        for($i=1;$i<=7;$i++){
+            $data['shop_id'] = $shop_id;
+            $data['day_id'] = $i;
+            $data['from'] = '00:00';
+            $data['till'] = '00:00';
+            $data['brake_start'] = '00:00';
+            $data['brake_end'] = '00:00';
+            $data['closed'] = true;
+
+            Openinghour::create($data);
         }
     }
 
