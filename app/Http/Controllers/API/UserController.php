@@ -91,31 +91,6 @@ class UserController extends Controller
         }
     }
 
-    public function updatepassword(Request $request)
-    {
-        $user = Auth::user();
-
-        $validator = Validator::make($request->all(), [
-            'password' => 'required',
-            'c_password' => 'required|same:password'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 401);
-        } else {
-            $input = $request->all();
-
-            $input['password'] = bcrypt($input['password']);
-
-            User::where('id', $user->id)
-                ->update([
-                    'password' => $input['password']
-                ]);
-
-            $updateduser = User::find($user->id);
-            return response()->json(['success' => $updateduser], 200);
-        }
-    }
 
     public function node(Request $request){
 
