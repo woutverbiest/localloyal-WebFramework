@@ -22,6 +22,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/transactions','API\TransactionController@index');//get transactions of my shop
 
     Route::post('/openinghours','API\OpeninghoursController@update');//update openinghours of my shop
+
+    Route::post('/code','API\CodeController@create');//create a code
 });
 
 Route::get('/user/{uuid}','API\UserController@find');//get a user
