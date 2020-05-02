@@ -28,26 +28,4 @@ class TransactionController extends Controller
             return response()->json(['success' => $transactions], 200);
         }
     }
-
-    public function statistics()
-    {
-        $shop = Shop::where('user_id', Auth::user()->id)->first();
-
-        //TODO LIJST MET ALLE KLANTEN
-
-
-        //HOEVEEL ZE UITGAVEN DEZE MAAND
-
-
-        //HOEVEEL ZE UITGAVEN VORIGE MAAND
-
-
-        //HOEVEEL ZE UITGAVEN DIT JAAR
-
-
-        //HOEVEEL ZE UITGAVEN VORIG JAAR
-
-
-        //HOEVAAK ZE GEMIDDELD MAAND WEER JE WINKEL BEZOEKEN
-    }
 }
