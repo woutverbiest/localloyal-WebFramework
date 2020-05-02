@@ -18,11 +18,15 @@ class ShopController extends Controller
 
         if ($shop == null) {
 
-            //TODO ADD ADDRESS TO VALIDATOR 
             $validator = Validator::make($request->all(), [
                 'shopname' => 'required',
                 'shoptype' => 'required',
                 'description' => 'required',
+                'phonenumber' => 'required',
+                'street' => 'required',
+                'city' => 'required',
+                'number' => 'required',
+                'zip' => 'required',
             ]);
 
             //TODO ALSO GENERATE OPENINGHOURS (maybe event????)
@@ -103,8 +107,12 @@ class ShopController extends Controller
                 'visible' => 'required',
                 'shoptype' => 'required',
                 'description' => 'required',
+                'phonenumber' => 'required',
+                'street' => 'required',
+                'city' => 'required',
+                'number' => 'required',
+                'zip' => 'required',
             ]);
-            //TODO ADD ADDRESS OPTION
 
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors()], 401);
@@ -112,11 +120,17 @@ class ShopController extends Controller
                 $input = $request->all();
 
                 Shop::where('user_id', $user->id)
-                    ->update(['shopname' => $input['shopname'],
+                    ->update([
+                        'shopname' => $input['shopname'],
                         'visible' => $input['visible'],
                         'shoptype' => $input['shoptype'],
                         'description' => $input['description'],
-                    ]);//TODO update address option
+                        'phonenumber' => $input['phonenumber'],
+                        'street' => $input['street'],
+                        'city' => $input['city'],
+                        'number' => $input['number'],
+                        'zip' => $input['zip']
+                    ]);
 
                 $updatedshop = Shop::where('user_id', $user->id)->first();
                 $updatedshop->shoptype = self::getshoptype($shop->shoptype);
