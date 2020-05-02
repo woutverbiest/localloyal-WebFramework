@@ -21,8 +21,6 @@ Route::group(['middleware' => 'auth:api'], function(){
 
     Route::get('/transactions','API\TransactionController@index');//get transactions of my shop
 
-    Route::get('/statistics','API\TransactionController@statistics');//get statistics of my shop
-
     Route::post('/openinghours','API\OpeninghoursController@update');//update openinghours of my shop
 });
 
