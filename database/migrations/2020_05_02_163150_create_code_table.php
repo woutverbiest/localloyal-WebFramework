@@ -15,10 +15,13 @@ class CreateCodeTable extends Migration
     {
         Schema::create('code', function (Blueprint $table) {
             $table->string('code');
-            $table->foreign('shopid')->references('id')->on('shops')->nullable(false);
-            $table->int('points')->nullable(false);
+            $table->unsignedBigInteger('shopid');
+            $table->foreign('shopid')->references('id')->on('shops');
+            $table->integer('points')->nullable(false);
             $table->boolean('used')->nullable(false);
             $table->timestamps();
+
+            $table->primary('code');
         });
     }
 
