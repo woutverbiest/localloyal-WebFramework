@@ -17,8 +17,9 @@ class Shop extends Model
         'city',
         'number',
         'zip',
+        'pincode'
     ];
     protected $hidden = [
-        'id','visible','created_at','updated_at','user_id'
+        'id','visible','created_at','updated_at','user_id','pincode'
     ];
 }
