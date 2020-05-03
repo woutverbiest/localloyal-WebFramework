@@ -28,6 +28,10 @@ class ShopController extends Controller
                 'city' => 'required',
                 'number' => 'required',
                 'zip' => 'required',
+                'longitude' => 'required',
+                'longitudepos' => 'required',
+                'latitude' => 'required',
+                'latitudepos' => 'required'
             ]);
 
             if ($validator->fails()) {
@@ -128,6 +132,10 @@ class ShopController extends Controller
                 'city' => 'required',
                 'number' => 'required',
                 'zip' => 'required',
+                'longitude' => 'required',
+                'longitudepos' => 'required',
+                'latitude' => 'required',
+                'latitudepos' => 'required'
             ]);
 
             if ($validator->fails()) {
@@ -145,7 +153,11 @@ class ShopController extends Controller
                         'street' => $input['street'],
                         'city' => $input['city'],
                         'number' => $input['number'],
-                        'zip' => $input['zip']
+                        'zip' => $input['zip'],
+                        'longitude' => $input['longitude'],
+                        'longitudepos' => $input['longitudepos'],
+                        'latitudepos' => $input['latitude'],
+                        'latitude' => $input['latitude']
                     ]);
 
                 $updatedshop = Shop::where('user_id', $user->id)->first();
