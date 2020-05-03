@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\support\Facades\Auth;
 use App\Shop;
 use App\Code;
+use Validator;
 
 class CodeController extends Controller
 {
@@ -14,7 +15,7 @@ class CodeController extends Controller
         $user = Auth::user();
         $shop = Shop::where('user_id', $user->id)->first();
 
-        if($shop == null){
+        if($shop !== null){
         $validator = Validator::make($request->all(),[
             'points' => 'required'
         ]);
@@ -42,7 +43,7 @@ class CodeController extends Controller
         $characters = "012346789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRST";
         $randomstring = '';
         for($i = 0; $i < $length; $i++){
-            $randomstring .= $characters[rand(0, $charactersLength -1)];
+            $randomstring .= $characters[rand(0, strlen($characters) -1)];
         }
         return $randomstring;
     }
