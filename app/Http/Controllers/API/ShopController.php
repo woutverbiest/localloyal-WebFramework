@@ -30,8 +30,6 @@ class ShopController extends Controller
                 'zip' => 'required',
             ]);
 
-            //TODO ALSO GENERATE OPENINGHOURS (maybe event????)
-
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors()], 401);
             } else {
@@ -39,6 +37,7 @@ class ShopController extends Controller
 
                 $input['visible'] = true;
                 $input['user_id'] = $user->id;
+                $input['pincode'] = 1234;
 
                 $shop = Shop::create($input);
 
