@@ -13,7 +13,7 @@ class CreateCodeTable extends Migration
      */
     public function up()
     {
-        Schema::create('code', function (Blueprint $table) {
+        Schema::create('codes', function (Blueprint $table) {
             $table->string('code');
             $table->unsignedBigInteger('shopid');
             $table->foreign('shopid')->references('id')->on('shops');
@@ -32,6 +32,6 @@ class CreateCodeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('code');
+        Schema::dropIfExists('codes');
     }
 }
