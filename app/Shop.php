@@ -16,7 +16,7 @@ class Shop extends Model
         'street',
         'city',
         'number',
-        'zip',
+        'country',
         'pincode',
         'longitude',
         'longitudepos',

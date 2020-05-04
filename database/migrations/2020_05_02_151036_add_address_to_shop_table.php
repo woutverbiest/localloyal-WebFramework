@@ -18,7 +18,7 @@ class AddAddressToShopTable extends Migration
             $table->string('street');
             $table->string('city');
             $table->string('number');
-            $table->string('zip');
+            $table->string('country');
         });
     }
 
@@ -34,7 +34,7 @@ class AddAddressToShopTable extends Migration
             $table->dropColumn('street');
             $table->dropColumn('city');
             $table->dropColumn('number');
-            $table->dropColumn('zip');
+            $table->dropColumn('country');
         });
     }
 }
